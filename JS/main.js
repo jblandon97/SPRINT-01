@@ -40,45 +40,9 @@ function ATM(_5In, _10In, _20In, _50In, _100In,) {
     this.money50 = this._50 * 50000
     this.money100 = this._100 * 100000
 
-    this.saveBills = function () {
-        this.bills = this._5 + this._10 + this._20 + this._50 + this._100
-        return this.bills;
-    }
-
     this.saveMoney = function () {
         this.money = this.money5 + this.money10 + this.money20 + this.money50 + this.money100;
         return this.money;
-    }
-
-    this._5Bills = function () {
-        return this._5;
-    }
-    this._10Bills = function () {
-        return this._10;
-    }
-    this._20Bills = function () {
-        return this._20;
-    }
-    this._50Bills = function () {
-        return this._50;
-    }
-    this._100Bills = function () {
-        return this._100;
-    }
-    this.money5Bills = function () {
-        return this.money5;
-    }
-    this.money10Bills = function () {
-        return this.money10;
-    }
-    this.money20Bills = function () {
-        return this.money20;
-    }
-    this.money50Bills = function () {
-        return this.money50;
-    }
-    this.money100Bills = function () {
-        return this.money100;
     }
 
 }
@@ -120,18 +84,10 @@ let setMoney = function () {
         money += recharges[i].saveMoney();
     }
     alert(money);
-    return [_5, _10, _20, _50, _100];
 }
 
-function getMoney(money, numberOfBillsForDenomination) {
+function getMoney(money) {
     let array = [];
-    let denomination = [5000, 10000, 20000, 50000, 100000];
-    let moneyForDenomination = function () {
-        for (let i = 0; i < 5; i++) {
-            array.push(numberOfBillsForDenomination[i] * denomination[i]);
-        }
-        return array;
-    }
     if (money == 0) {
         alert("Cajero en mantenimiento, vuelva pronto");
     } else {
@@ -142,33 +98,8 @@ function getMoney(money, numberOfBillsForDenomination) {
         }
         alert("El cajeto le puede entregar " + withdrawal + " $");
         money -= withdrawal;
-        // if ((withdrawal - moneyForDenomination[4]) > 0) {
-        //     withdrawal -= moneyForDenomination[4];
-            
-        //     if ((withdrawal - moneyForDenomination[3]) > 0) {
-        //         withdrawal -= moneyForDenomination[3];
-        //         if ((withdrawal - moneyForDenomination[2]) > 0) {
-        //             {
-        //                 withdrawal -= moneyForDenomination[2];
-        //                 if ((withdrawal - moneyForDenomination[1]) > 0) {
-        //                     withdrawal -= moneyForDenomination[1];
-        //                     if ((withdrawal - moneyForDenomination[0] > 0)) {
-        //                         withdrawal -= moneyForDenomination[0];
-        //                     }
-        //                 }
-        //             }
-
-        //         }
-        //     }
-        // } else {
-           
-        // }
         alert("El cajeto tiene ahora " + money + " $");
-        // alert(numberOfBillsForDenomination[0]+" de 5000 $ ");
-        // alert(numberOfBillsForDenomination[1]+" de 10000 $ ");
-        // alert(numberOfBillsForDenomination[2]+" de 20000 $ ");
-        // alert(numberOfBillsForDenomination[3]+" de 50000 $ ");
-        // alert(numberOfBillsForDenomination[4]+" de 100000 $ ");
+
         return money;
     }
 
@@ -189,12 +120,13 @@ while (!input) {
         y/o el usuario son incorrectos")
     } else {
         if (userType == "administrador") {
-            numberOfBillsForDenomination = setMoney();
+            alert("Bienvenido admin")
+            setMoney();
 
         }
         else if (userType == "cliente") {
             alert("bienvenido sr(a) " + userName)
-            money = getMoney(money, numberOfBillsForDenomination);
+            money = getMoney(money);
 
         }
         let answer = prompt("Desea realizar otra operación ? Conteste solo si o no");
